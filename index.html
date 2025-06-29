@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get User Location</title>
+</head>
+<body>
+
+  <h2>Welcome to real life</h2>
+  <a href="#" onclick="getLocation()">Click here to open magicbox</a>
+
+  <p id="output" style="margin-top:20px;"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            const output = document.getElementById('output');
+            output.innerHTML = `Your Location:<br>Latitude: ${lat}<br>Longitude: ${lon}`;
+
+            alert(`Your Location:\nLatitude: ${lat}\nLongitude: ${lon}`);
+          },
+          function(error) {
+            alert("Error getting location: " + error.message);
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+
+</body>
+</html>
